@@ -1,6 +1,7 @@
 import { lazy } from 'react'
 
-const Home = lazy(() => import('./Home/index'))
+const Starter = lazy(() => import('./Starter'))
+const Home = lazy(() => import('./Home'))
 
 const PageConfigs = [
   {
@@ -8,6 +9,10 @@ const PageConfigs = [
     options: {
       layout: false,
     },
+    element: <Starter />,
+  },
+  {
+    path: '/landing',
     element: <Home />,
   },
 ]

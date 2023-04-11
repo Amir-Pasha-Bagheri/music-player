@@ -3,12 +3,7 @@ import PropTypes from 'prop-types'
 import Loading from './Loading'
 
 function Suspensor({ children }) {
-  return (
-    <Suspense fallback={<Loading />}>
-      {/* {children} */}
-      <Loading />
-    </Suspense>
-  )
+  return <Suspense fallback={<Loading />}>{children}</Suspense>
 }
 
 Suspensor.propTypes = {

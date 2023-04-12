@@ -4,15 +4,22 @@ import Layout from './app/layout'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from '@mui/material'
 import defaultTheme from './app/configs/theme'
+import { Provider as StoreProvider } from 'react-redux'
+import store from './app/store/store'
 import './app/styles/index.css'
+import ErrorBoundary from './app/configs/ErrorBoundary'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={defaultTheme}>
-        <Layout />
-      </ThemeProvider>
-    </BrowserRouter>
+    <ThemeProvider theme={defaultTheme}>
+      <ErrorBoundary>
+        <StoreProvider store={store}>
+          <BrowserRouter>
+            <Layout />
+          </BrowserRouter>
+        </StoreProvider>
+      </ErrorBoundary>
+    </ThemeProvider>
   </React.StrictMode>
 )

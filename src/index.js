@@ -6,8 +6,9 @@ import { ThemeProvider } from '@mui/material'
 import defaultTheme from './app/configs/theme'
 import { Provider as StoreProvider } from 'react-redux'
 import store from './app/store/store'
-import './app/styles/index.css'
 import ErrorBoundary from './app/configs/ErrorBoundary'
+import './app/styles/index.css'
+import 'simplebar-react/dist/simplebar.min.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(

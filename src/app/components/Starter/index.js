@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import { styled } from '@mui/material'
 import Name from './Name'
 import Image from './Image'
+import Singers from './Singers'
 
 const StyledBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.grey[900],
@@ -17,8 +18,9 @@ const StyledBox = styled(Box)(({ theme }) => ({
 
 function Starter() {
   const [shouldRender, setShouldRender] = React.useState({
-    name: true,
+    name: false,
     avatar: false,
+    singers: true,
   })
 
   const pageContainerRef = React.useRef()
@@ -28,7 +30,11 @@ function Starter() {
   }
 
   const unmountAvatar = () => {
-    setShouldRender((prev) => ({ ...prev, avatar: false, name: true }))
+    setShouldRender((prev) => ({ ...prev, avatar: false, singers: true }))
+  }
+
+  const unmountSingers = () => {
+    setShouldRender((prev) => ({ ...prev, singers: false, name: true }))
   }
 
   return (
@@ -39,6 +45,10 @@ function Starter() {
 
       {shouldRender.avatar && (
         <Image pageContainerRef={pageContainerRef} unmount={unmountAvatar} />
+      )}
+
+      {shouldRender.singers && (
+        <Singers pageContainerRef={pageContainerRef} unmount={unmountSingers} />
       )}
     </StyledBox>
   )

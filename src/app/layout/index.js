@@ -2,6 +2,7 @@ import React from 'react'
 import { useRoutes, matchRoutes, useLocation } from 'react-router-dom'
 import Suspensor from './Suspensor'
 import PageConfigs from '../components/PageConfigs'
+import Message from './Message'
 
 function Layout() {
   const { pathname } = useLocation()
@@ -16,6 +17,8 @@ function Layout() {
       {options?.layout !== false && <div>welcome here.</div>}
 
       {useRoutes(PageConfigs)}
+
+      <Message />
     </Suspensor>
   )
 }

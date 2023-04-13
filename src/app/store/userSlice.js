@@ -16,9 +16,13 @@ const userSlice = createSlice({
     updateAvatar: (state, action) => {
       state.avatar = action.payload
     },
+    updatefavoriteSingers: (state, action) => {
+      state.favoriteSingers = action.payload
+    },
   },
 })
 
-export const { updateName, updateAvatar } = userSlice.actions
+export const { updateName, updateAvatar, updatefavoriteSingers } =
+  userSlice.actions
 
 export default userSlice.reducer

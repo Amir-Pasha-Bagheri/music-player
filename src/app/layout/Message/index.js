@@ -14,36 +14,35 @@ const IconVariants = {
 }
 
 function Message() {
-  const { open, variant, text, color } = useSelector((state) => state.message)
+  const { open, iconVariant, text, textVariant, autoHideDuration } =
+    useSelector((state) => state.message)
+
+  const ref = React.useRef()
 
   const dispatch = useDispatch()
 
-  const closeAlert = () => {
-    dispatch(hideMessage())
+  const closeAlert = (event, reason) => {
+    if (reason !== 'clickaway') {
+      dispatch(hideMessage())
+    }
   }
 
-  const Icon = React.useMemo(() => IconVariants[variant], [variant])
-
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     if (open) {
-  //       closeAlert()
-  //     }
-  //   }, 2000)
-  // }, [open])
+  const Icon = React.useMemo(() => IconVariants[iconVariant], [iconVariant])
 
   return (
     <Snackbar
+      ref={ref}
       open={open}
-      autoHideDuration={6000}
+      autoHideDuration={autoHideDuration}
       onClose={closeAlert}
       anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
     >
       <Alert
-        severity={color || 'info'}
+        severity={textVariant || 'info'}
         variant='filled'
         icon={Icon}
         sx={{ fontSize: 18 }}
+        onClose={closeAlert}
       >
         {text}
       </Alert>

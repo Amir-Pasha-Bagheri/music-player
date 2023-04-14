@@ -2,9 +2,10 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   open: false,
-  variant: null,
+  iconVariant: null,
   text: '',
-  color: null,
+  textVariant: null,
+  autoHideDuration: null,
 }
 
 const messageSlice = createSlice({

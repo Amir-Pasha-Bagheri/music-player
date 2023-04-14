@@ -4,6 +4,8 @@ import { styled } from '@mui/material'
 import Name from './Name'
 import Image from './Image'
 import Singers from './Singers'
+import { useDispatch } from 'react-redux'
+import { hideMessage } from '../../store/messageSlice'
 
 const StyledBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.grey[900],
@@ -18,12 +20,14 @@ const StyledBox = styled(Box)(({ theme }) => ({
 
 function Starter() {
   const [shouldRender, setShouldRender] = React.useState({
-    name: false,
+    name: true,
     avatar: false,
-    singers: true,
+    singers: false,
   })
 
   const pageContainerRef = React.useRef()
+
+  const dispatch = useDispatch()
 
   const unmountName = () => {
     setShouldRender((prev) => ({ ...prev, name: false, avatar: true }))
@@ -36,6 +40,10 @@ function Starter() {
   const unmountSingers = () => {
     setShouldRender((prev) => ({ ...prev, singers: false, name: true }))
   }
+
+  React.useEffect(() => {
+    dispatch(hideMessage())
+  }, [dispatch, shouldRender])
 
   return (
     <StyledBox ref={pageContainerRef}>

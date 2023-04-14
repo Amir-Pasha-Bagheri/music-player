@@ -30,9 +30,9 @@ function Singers({ pageContainerRef, unmount }) {
     if (selected.includes(addedSinger.id)) {
       dispatch(
         showMessage({
-          variant: 'done',
+          iconVariant: 'done',
           text: `${addedSinger.name} removed from favourite list`,
-          color: 'error',
+          textVariant: 'error',
         })
       )
       setSelected((prev) =>
@@ -42,16 +42,17 @@ function Singers({ pageContainerRef, unmount }) {
       if (selected.length === 3) {
         dispatch(
           showMessage({
-            variant: 'limit',
+            iconVariant: 'limit',
             text: 'You can only choose 3 as your favourites !',
+            textVariant: 'warning',
           })
         )
       } else {
         dispatch(
           showMessage({
-            variant: 'done',
+            iconVariant: 'done',
             text: `${addedSinger.name} added to your favourite list`,
-            color: 'success',
+            textVariant: 'success',
           })
         )
         setSelected((prev) => [...prev, addedSinger.id])
@@ -107,10 +108,7 @@ function Singers({ pageContainerRef, unmount }) {
           in={shouldDisplay.title}
           container={boxContainerRef.current}
         >
-          <Typography
-            variant='h5'
-            sx={{ marginLeft: 2, wordBreak: 'keep-all' }}
-          >
+          <Typography variant='h5' sx={{ marginLeft: 2, whiteSpace: 'nowrap' }}>
             Click to choose your top 3 !
           </Typography>
         </Slide>

@@ -44,7 +44,7 @@ function Image({ pageContainerRef, unmount }) {
     if (!image) {
       dispatch(
         showMessage({
-          variant: 'image',
+          iconVariant: 'image',
           text: 'Please choose an image to continue',
         })
       )

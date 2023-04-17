@@ -10,9 +10,10 @@ import Avatar from '@mui/material/Avatar'
 import Badge from '@mui/material/Badge'
 import Grid from '@mui/material/Grid'
 import Grow from '@mui/material/Grow'
+import PhotoIcon from '@mui/icons-material/Photo'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateAvatar } from '../../store/userSlice'
-import { showMessage } from '../../store/messageSlice'
+import { toast } from 'react-toastify'
 
 function Image({ pageContainerRef, unmount }) {
   const [image, setImage] = React.useState(null)
@@ -42,12 +43,9 @@ function Image({ pageContainerRef, unmount }) {
 
   const handleNext = () => {
     if (!image) {
-      dispatch(
-        showMessage({
-          iconVariant: 'image',
-          text: 'Please choose an image to continue',
-        })
-      )
+      toast.info('Please choose an image to continue', {
+        icon: <PhotoIcon />,
+      })
     } else {
       dispatch(updateAvatar(image))
       setShouldDisplay((prev) => ({ ...prev, container: false }))

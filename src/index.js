@@ -9,6 +9,7 @@ import store from './app/store/store'
 import ErrorBoundary from './app/configs/ErrorBoundary'
 import './app/styles/index.css'
 import 'simplebar-react/dist/simplebar.min.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(

@@ -2,7 +2,7 @@ import React from 'react'
 import { useRoutes, matchRoutes, useLocation } from 'react-router-dom'
 import Suspensor from './Suspensor'
 import PageConfigs from '../components/PageConfigs'
-import Message from './Message'
+import { ToastContainer } from 'react-toastify'
 
 function Layout() {
   const { pathname } = useLocation()
@@ -18,7 +18,17 @@ function Layout() {
 
       {useRoutes(PageConfigs)}
 
-      <Message />
+      <ToastContainer
+        position='top-center'
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='colored'
+      />
     </Suspensor>
   )
 }

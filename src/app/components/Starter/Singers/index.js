@@ -11,7 +11,6 @@ import Card from './Card'
 import { useDispatch } from 'react-redux'
 import { singers } from '../../../constants/singers'
 import { updatefavoriteSingers } from '../../../store/userSlice'
-import { showMessage } from '../../../store/messageSlice'
 
 function Singers({ pageContainerRef, unmount }) {
   const [selected, setSelected] = React.useState([])
@@ -28,33 +27,30 @@ function Singers({ pageContainerRef, unmount }) {
 
   const onClickSinger = (addedSinger) => {
     if (selected.includes(addedSinger.id)) {
-      dispatch(
-        showMessage({
-          iconVariant: 'done',
-          text: `${addedSinger.name} removed from favourite list`,
-          textVariant: 'error',
-        })
-      )
+      dispatch()
+      // showMessage({
+      //   iconVariant: 'done',
+      //   text: `${addedSinger.name} removed from favourite list`,
+      //   textVariant: 'error',
+      // })
       setSelected((prev) =>
         prev.filter((singerId) => singerId !== addedSinger.id)
       )
     } else {
       if (selected.length === 3) {
-        dispatch(
-          showMessage({
-            iconVariant: 'limit',
-            text: 'You can only choose 3 as your favourites !',
-            textVariant: 'warning',
-          })
-        )
+        dispatch()
+        // showMessage({
+        //   iconVariant: 'limit',
+        //   text: 'You can only choose 3 as your favourites !',
+        //   textVariant: 'warning',
+        // })
       } else {
-        dispatch(
-          showMessage({
-            iconVariant: 'done',
-            text: `${addedSinger.name} added to your favourite list`,
-            textVariant: 'success',
-          })
-        )
+        dispatch()
+        // showMessage({
+        //   iconVariant: 'done',
+        //   text: `${addedSinger.name} added to your favourite list`,
+        //   textVariant: 'success',
+        // })
         setSelected((prev) => [...prev, addedSinger.id])
       }
     }

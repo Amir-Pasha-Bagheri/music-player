@@ -11,6 +11,9 @@ import Card from './Card'
 import { useDispatch } from 'react-redux'
 import { singers } from '../../../constants/singers'
 import { updatefavoriteSingers } from '../../../store/userSlice'
+import customTost from '../../../configs/customToast'
+import DoneAllIcon from '@mui/icons-material/DoneAll'
+import PanToolIcon from '@mui/icons-material/PanTool'
 
 function Singers({ pageContainerRef, unmount }) {
   const [selected, setSelected] = React.useState([])
@@ -27,30 +30,21 @@ function Singers({ pageContainerRef, unmount }) {
 
   const onClickSinger = (addedSinger) => {
     if (selected.includes(addedSinger.id)) {
-      dispatch()
-      // showMessage({
-      //   iconVariant: 'done',
-      //   text: `${addedSinger.name} removed from favourite list`,
-      //   textVariant: 'error',
-      // })
+      customTost.error(`${addedSinger.name} removed from favourite list`, {
+        icon: <DoneAllIcon sx={{ fontSize: 30 }} />,
+      })
       setSelected((prev) =>
         prev.filter((singerId) => singerId !== addedSinger.id)
       )
     } else {
       if (selected.length === 3) {
-        dispatch()
-        // showMessage({
-        //   iconVariant: 'limit',
-        //   text: 'You can only choose 3 as your favourites !',
-        //   textVariant: 'warning',
-        // })
+        customTost.info('You can only choose 3 as your favourites !', {
+          icon: <PanToolIcon sx={{ fontSize: 30 }} />,
+        })
       } else {
-        dispatch()
-        // showMessage({
-        //   iconVariant: 'done',
-        //   text: `${addedSinger.name} added to your favourite list`,
-        //   textVariant: 'success',
-        // })
+        customTost.success(`${addedSinger.name} added to your favourite list`, {
+          icon: <DoneAllIcon sx={{ fontSize: 30 }} />,
+        })
         setSelected((prev) => [...prev, addedSinger.id])
       }
     }

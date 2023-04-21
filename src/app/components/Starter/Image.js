@@ -13,6 +13,7 @@ import Grow from '@mui/material/Grow'
 import PhotoIcon from '@mui/icons-material/Photo'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateAvatar } from '../../store/userSlice'
+import customTost from '../../configs/customToast'
 import { toast } from 'react-toastify'
 
 function Image({ pageContainerRef, unmount }) {
@@ -43,16 +44,18 @@ function Image({ pageContainerRef, unmount }) {
 
   const handleNext = () => {
     if (!image) {
-      toast.info('Please choose an image to continue', {
-        icon: <PhotoIcon />,
+      customTost.info('Please choose an image to continue', {
+        icon: <PhotoIcon sx={{ fontSize: 30 }} />,
       })
     } else {
+      toast.dismiss()
       dispatch(updateAvatar(image))
       setShouldDisplay((prev) => ({ ...prev, container: false }))
     }
   }
 
   const handleSkip = () => {
+    toast.dismiss()
     unmount()
   }
 

@@ -1,1 +1,14 @@
+.Toastify__toast-container {
+  width: 500px !important;
+  font-size: larger;
+  @media screen and (max-width: 500px) {
+    width: 100% !important;
+    padding: 15px !important;
+  }
+}
 
+.Toastify__toast-icon {
+  width: 35px !important;
+  display: flex;
+  justify-content: center;
+}

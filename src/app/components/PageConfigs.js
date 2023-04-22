@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 
 const Starter = lazy(() => import('./Starter'))
-const Home = lazy(() => import('./Home'))
+const Landing = lazy(() => import('./Landing'))
 
 const PageConfigs = [
   {
@@ -13,7 +13,7 @@ const PageConfigs = [
   },
   {
     path: '/landing',
-    element: <Home />,
+    element: <Landing />,
   },
 ]
 

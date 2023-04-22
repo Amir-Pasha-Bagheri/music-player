@@ -44,7 +44,7 @@ function Image({ pageContainerRef, unmount }) {
 
   const handleNext = () => {
     if (!image) {
-      customTost.info('Please choose an image to continue', {
+      customTost.info('Please choose an image to continue or skip', {
         icon: <PhotoIcon sx={{ fontSize: 30 }} />,
       })
     } else {

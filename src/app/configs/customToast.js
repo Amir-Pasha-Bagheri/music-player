@@ -11,13 +11,11 @@ const customTost = {
     }),
   success: (message, options) =>
     toast.success(message, {
-      //   style: { backgroundColor: '#E5B8F4', color: 'black' },
       closeButton,
       ...options,
     }),
   error: (message, options) =>
     toast.error(message, {
-      //   style: { backgroundColor: '#E5B8F4', color: 'black' },
       closeButton,
       ...options,
     }),

@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Home(props) {
-  return <>home</>
+  return <>Lansing</>
 }
 
 export default Home

@@ -2,6 +2,7 @@ import React from 'react'
 import { useRoutes, matchRoutes, useLocation } from 'react-router-dom'
 import Suspensor from './Suspensor'
 import PageConfigs from '../components/PageConfigs'
+import Authentication from './Authentication'
 
 function Layout() {
   const { pathname } = useLocation()
@@ -20,4 +21,4 @@ function Layout() {
   )
 }
 
-export default Layout
+export default Authentication(Layout)

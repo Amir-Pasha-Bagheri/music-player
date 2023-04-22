@@ -31,7 +31,7 @@ root.render(
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            limit={3}
+            limit={5}
             theme='colored'
           />
         </StoreProvider>

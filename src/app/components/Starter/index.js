@@ -4,9 +4,10 @@ import { styled } from '@mui/material'
 import Name from './Name'
 import Image from './Image'
 import Singers from './Singers'
-import { useDispatch, useSelector } from 'react-redux'
-import { updateAuthentication } from '../../store/userSlice'
-import { Navigate } from 'react-router'
+import globalStorage from '../../configs/globalStorage'
+import { IS_AUTH, USER } from '../../constants/globalStorage'
+import { Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const StyledBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.grey[900],
@@ -26,11 +27,11 @@ function Starter() {
     singers: false,
   })
 
-  const { authenticated } = useSelector(({ user }) => user)
+  const user = useSelector(({ user }) => user)
+
+  const authenticated = globalStorage.getItem(IS_AUTH)
 
   const pageContainerRef = React.useRef()
-
-  const dispatch = useDispatch()
 
   const unmountName = () => {
     setShouldRender((prev) => ({ ...prev, name: false, avatar: true }))
@@ -42,10 +43,11 @@ function Starter() {
 
   const unmountSingers = () => {
     setShouldRender((prev) => ({ ...prev, singers: false }))
-    dispatch(updateAuthentication())
+    globalStorage.setItem(IS_AUTH, true)
+    globalStorage.setItem(USER, user)
   }
 
-  if (authenticated) return <Navigate to={'/landing'} replace />
+  if (authenticated) return <Navigate to='landing' replace />
 
   return (
     <StyledBox ref={pageContainerRef}>

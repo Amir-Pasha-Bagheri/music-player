@@ -4,7 +4,6 @@ const initialState = {
   name: null,
   avatar: null,
   favoriteSingers: [],
-  authenticated: false,
 }
 
 const userSlice = createSlice({
@@ -20,17 +19,10 @@ const userSlice = createSlice({
     updatefavoriteSingers: (state, action) => {
       state.favoriteSingers = action.payload
     },
-    updateAuthentication: (state, action) => {
-      state.authenticated = true
-    },
   },
 })
 
-export const {
-  updateName,
-  updateAvatar,
-  updatefavoriteSingers,
-  updateAuthentication,
-} = userSlice.actions
+export const { updateName, updateAvatar, updatefavoriteSingers } =
+  userSlice.actions
 
 export default userSlice.reducer

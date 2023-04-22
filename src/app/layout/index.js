@@ -1,8 +1,8 @@
 import React from 'react'
-import { useRoutes, matchRoutes, useLocation } from 'react-router-dom'
+import { useRoutes, matchRoutes, useLocation, Navigate } from 'react-router-dom'
 import Suspensor from './Suspensor'
 import PageConfigs from '../components/PageConfigs'
-import Authentication from './Authentication'
+import globalStorage from '../configs/globalStorage'
 
 function Layout() {
   const { pathname } = useLocation()
@@ -12,13 +12,23 @@ function Layout() {
     route: { options },
   } = route
 
+  const authenticated = globalStorage.getItem('authenticated')
+
+  if (pathname === '/' && authenticated)
+    return <Navigate to='/landing' replace />
+
+  if (pathname !== '/' && !authenticated) return <Navigate to='/' replace />
+
   return (
     <Suspensor>
       {options?.layout !== false && <div>welcome here.</div>}
 
-      {useRoutes(PageConfigs)}
+      {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        useRoutes(PageConfigs)
+      }
     </Suspensor>
   )
 }
 
-export default Authentication(Layout)
+export default Layout
